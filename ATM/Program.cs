@@ -9,7 +9,7 @@
 
 
         public static string newPassword = "123456";
-        public static double balance = 123000.34;
+        public static double balance = 1230000;
         public static double helpBalance = balance;
         public static void Payment()
         {
@@ -45,10 +45,13 @@
             Console.WriteLine("1.O'zbek");
             Console.WriteLine("2.English");
 
-            double.TryParse(Console.ReadLine(), out double choosen);
-            if(choosen == 1)
+            if(choose() == 1)
             {
                 Password();
+            }
+            else
+            {
+                Console.WriteLine("Afsuski , hozirda bu xizmat turi mavjud emas .");
             }
             
         }
@@ -83,14 +86,14 @@
 
             switch (choose())
             {
-                case 1:   Balance();  break;
-                case 2:   GetMoney(); break;
-                case 3:   SMS();      break;
-                case 4: ChangePassword(); break;
-                case 5:;  break;
-                case 6:;  break;
-                case 7:;  break;
-                case 0:; break;
+                case 1:   Balance();        break;
+                case 2:   GetMoney();       break;
+                case 3:   SMS();            break;
+                case 4:   ChangePassword(); break;
+                case 5:   Paynet();         break;
+                case 6:   Kredit();         break;
+                case 7: CommunalPayment();  break;
+                case 0:                   ; break;
                 default: Menu(); break;
             }
         }
@@ -218,5 +221,63 @@
                 Paynet();
             }
         }
+        public static void Kredit()
+        {
+            Console.Clear();
+            Console.WriteLine("KREDIT BO'LIMI ");
+            Console.WriteLine("1. Kredit raqami");
+            Console.WriteLine("0. Orqaga");
+            if(choose() == 1)
+            {
+                Console.Clear();
+                Console.Write("Kredit raqamini kiriting : ");
+                double.TryParse(Console.ReadLine(), out double creditNumber);
+                
+                Console.Clear();
+                Console.WriteLine("To'lov summasini kiriting : ");
+                double.TryParse(Console.ReadLine(), out double creditPayment);
+               
+                helpBalance -= creditPayment;
+                Payment();
+            }
+            else
+            {
+                BackMenu();
+            }
+        }
+        public static void CommunalPayment()
+        {
+            Console.Clear();
+            Console.WriteLine("KOMMUNAL TO'LOVLAR");
+            Console.WriteLine("1.Elektr energiyasi");
+            Console.WriteLine("2.Jarimalar");
+            Console.WriteLine("3.Gaz");
+            Console.WriteLine("4.Suv");
+            Console.WriteLine("0,Orqaga");
+
+            switch (choose())
+            {
+                case 1: HelpCommunalPayment(); break;
+                case 2: HelpCommunalPayment(); break;
+                case 3: HelpCommunalPayment(); break;
+                case 4: HelpCommunalPayment(); break;
+                case 0: Menu();                break;
+                default: CommunalPayment();   break;
+            }
+        }
+        public static void HelpCommunalPayment()
+        {
+            Console.Clear();
+            Console.Write("Stir raqamini kiriting : ");
+            double.TryParse(Console.ReadLine(), out double communalNumber);
+
+            Console.Clear();
+            Console.WriteLine("To'lov summasini kiriting : ");
+            double.TryParse(Console.ReadLine(), out double communalPayment);
+
+            helpBalance -= communalPayment;
+            Payment();
+        }
+
     }
 }
