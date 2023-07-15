@@ -11,6 +11,8 @@
         public static string newPassword = "123456";
         public static double balance = 1230000;
         public static double helpBalance = balance;
+
+        #region help methods
         public static void Payment()
         {
             Console.Clear();
@@ -29,16 +31,46 @@
             }
             BackMenu();
         }
+        public static void HelpCommunalPayment()
+        {
+            Console.Clear();
+            Console.Write("Stir raqamini kiriting : ");
+            double.TryParse(Console.ReadLine(), out double communalNumber);
+
+            Console.Clear();
+            Console.WriteLine("To'lov summasini kiriting : ");
+            double.TryParse(Console.ReadLine(), out double communalPayment);
+
+            helpBalance -= communalPayment;
+            Payment();
+        }
+        public static void BackMenu()
+        {
+            Console.WriteLine("0. Orqaga");
+
+            if (choose() == 0)
+                Menu();
+            else
+            {
+                Console.Clear();
+                BackMenu();
+            }
+        }
         public static byte choose()
         {
             Console.Write("Kategoriyani tanlang : ");
             byte choosen = 0;
+
             while (!byte.TryParse(Console.ReadLine(), out  choosen))
             {
                 Console.WriteLine("\n Iltimos faqat berilgan kategoriyani tanlang ! ");
             }
             return choosen;
-        } 
+        }
+
+        #endregion
+
+        #region main methods
         public static void Enter()
         {
             Console.WriteLine("Chooose the language (Tilni tanlang) ");
@@ -128,18 +160,6 @@
                 default: GetMoney();break;
             }
             Payment();
-        }
-        public static void BackMenu()
-        {
-            Console.WriteLine("0. Orqaga");
-
-            if(choose() == 0)
-            Menu();
-            else
-            {
-                Console.Clear();
-                BackMenu();
-            }
         }
         public static void SMS()
         {
@@ -265,19 +285,6 @@
                 default: CommunalPayment();   break;
             }
         }
-        public static void HelpCommunalPayment()
-        {
-            Console.Clear();
-            Console.Write("Stir raqamini kiriting : ");
-            double.TryParse(Console.ReadLine(), out double communalNumber);
-
-            Console.Clear();
-            Console.WriteLine("To'lov summasini kiriting : ");
-            double.TryParse(Console.ReadLine(), out double communalPayment);
-
-            helpBalance -= communalPayment;
-            Payment();
-        }
-
+        #endregion
     }
 }
