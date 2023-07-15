@@ -13,6 +13,7 @@
         public static double helpBalance = balance;
 
         #region help methods
+        
         public static void Payment()
         {
             Console.Clear();
@@ -73,6 +74,7 @@
         #region main methods
         public static void Enter()
         {
+            Console.Clear();
             Console.WriteLine("Chooose the language (Tilni tanlang) ");
             Console.WriteLine("1.O'zbek");
             Console.WriteLine("2.English");
@@ -125,7 +127,7 @@
                 case 5:   Paynet();         break;
                 case 6:   Kredit();         break;
                 case 7: CommunalPayment();  break;
-                case 0:                   ; break;
+                case 0: Enter()           ; break;
                 default: Menu(); break;
             }
         }
