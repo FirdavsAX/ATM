@@ -226,7 +226,7 @@
             {
                 Menu();
             }
-            else if (choose() > 0 && choose() < 6)
+            else 
             {
                 Console.Clear();
                 Console.Write("Raqamingizni kiriting :  +998 ");
@@ -237,10 +237,6 @@
 
                 helpBalance -= paynet;
                 Payment();
-            }
-            else
-            {
-                Paynet();
             }
         }
         public static void Kredit()
